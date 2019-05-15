@@ -29,6 +29,15 @@ namespace ChinesePoetry.Console
             Console.ReadKey();
         }
 
+        private static void AddTangShi(PoetryDbContext context)
+        {
+            var path = @"F:\code\ChinesePoetry\ChinesePoetry.Console\data\json";
+            var files = Directory.GetFiles(path, "*.json");
+            var authorFiles = files.Where(f => f.Contains("author"));
+            var shiFiles = files.Where(f => f.Contains("poet"));
+
+        }
+
         private static void AddCi(PoetryDbContext context)
         {
             var path = @"F:\code\ChinesePoetry\ChinesePoetry.Console\data\ci";
@@ -67,12 +76,13 @@ namespace ChinesePoetry.Console
                 List<Poetry> cis = new List<Poetry>(100000);
                 var result = Parallel.ForEach(ciFiles, (file, loopState) =>
                     {
+                        var dynasty = file.Split(".", StringSplitOptions.RemoveEmptyEntries)[1];
                         using (var reader = File.OpenText(file))
                         {
                             var json = reader.ReadToEnd();
                             lock (sync_lock)
                             {
-                                cis.AddRange(JsonConvert.DeserializeObject<List<CiContent>>(json).Select(c => c.ToEntity()));
+                                cis.AddRange(JsonConvert.DeserializeObject<List<CiContent>>(json).Select(c => c.ToEntity(dynasty)));
                             }
                         }
 
@@ -120,12 +130,13 @@ namespace ChinesePoetry.Console
         /// </summary>
         public string rhythmic { get; set; }
 
-        public Poetry ToEntity() => new Poetry
+        public Poetry ToEntity(string dynasty = null) => new Poetry
         {
             Title = rhythmic,
             Content = string.Join('\n', paragraphs),
             AuthorName = author,
-            Type = PoetryType.Ci
+            Type = PoetryType.Ci,
+            Dynasty = dynasty
         };
     }
 }

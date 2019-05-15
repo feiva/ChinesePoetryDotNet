@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace ChinesePoetry.Spider
 {
+
+
+
     class Program
     {
-
-
         static void Main(string[] args)
         {
             MingJuSpider.Run();
@@ -17,12 +18,14 @@ namespace ChinesePoetry.Spider
 
     }
 
+    /// <summary>
+    /// 名句
+    /// </summary>
     public class MingJuSpider
     {
         static string MingJu = "https://so.gushiwen.org/mingju/default.aspx?p={0}&c={1}&t={2}";
         static int MingJuMaxPage = 20;
         static object syncLock = new object();
-
 
         public static void Run()
         {
