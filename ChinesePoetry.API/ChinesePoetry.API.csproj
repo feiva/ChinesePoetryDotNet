@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>F115D6F3-8D74-4E97-88DC-59646724466F</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview3-19153-02" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChinesePoetry.Database\ChinesePoetry.Database.csproj" />
+  </ItemGroup>
+
+</Project>

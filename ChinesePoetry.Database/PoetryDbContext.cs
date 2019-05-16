@@ -1,21 +1,45 @@
 ﻿using ChinesePoetry.Database.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
 using System;
+using System.Linq;
 
 namespace ChinesePoetry.Database
 {
-    public class PoetryDbContext : DbContext
+    public class PoetryDbContext
     {
-        //public PoetryDbContext(DbContextOptions<PoetryDbContext> options) : base(options)
-        //{
-        //}
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        private readonly IConfiguration _config;
+        private readonly IMongoDatabase _database;
+        public PoetryDbContext(IConfiguration config)
         {
-            optionsBuilder.UseMySql("Data Source=localhost;Database=chinesepoetry;User ID=root;Password=P@ssw0rd1234;pooling=true;CharSet=utf8;port=3306;sslmode=none");
+            _config = config;
+
+            var connection = _config["MongoDbConnectionString"];
+            var client = new MongoClient(connection);
+            if (client != null)
+            {
+                _database = client.GetDatabase("chinesepoetry");
+            }
+            else
+            {
+                throw new Exception("cannot connect to mongodb!");
+            }
         }
 
-        public DbSet<Poetry> Poetry { get; set; }
-        public DbSet<Author> Authors { get; set; }
+        public IMongoCollection<MingJu> MingJu
+        {
+            get
+            {
+                var list = _database.ListCollections()
+                    .ToList().
+                    Select(a => a["name"].AsString);
+                if (!list.Any(a => a.Equals(nameof(MingJu), StringComparison.CurrentCultureIgnoreCase)))
+                {
+                    _database.CreateCollection(nameof(MingJu));
+                }
+                return _database.GetCollection<MingJu>(nameof(MingJu));
+            }
+        }
     }
 }

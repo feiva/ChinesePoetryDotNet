@@ -7,12 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinesePoetry.Database", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinesePoetry.Console", "ChinesePoetry.Console\ChinesePoetry.Console.csproj", "{10B4CB4F-2B46-4D69-B52A-6870CACCF16A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinesePoetry.Spider", "ChinesePoetry.Spider\ChinesePoetry.Spider.csproj", "{3696EC7B-FA98-4768-9B99-5A4515CCFC65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinesePoetry.Spider", "ChinesePoetry.Spider\ChinesePoetry.Spider.csproj", "{3696EC7B-FA98-4768-9B99-5A4515CCFC65}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{167A65A5-E162-4AB0-B398-7A1CCC523066}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChinesePoetry.API", "ChinesePoetry.API\ChinesePoetry.API.csproj", "{AAA2DBCB-1C2E-4BC9-BD81-C55985021931}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C585D402-449A-4DBF-9AC1-D031DB56B361}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +36,17 @@ Global
 		{3696EC7B-FA98-4768-9B99-5A4515CCFC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3696EC7B-FA98-4768-9B99-5A4515CCFC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3696EC7B-FA98-4768-9B99-5A4515CCFC65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAA2DBCB-1C2E-4BC9-BD81-C55985021931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAA2DBCB-1C2E-4BC9-BD81-C55985021931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAA2DBCB-1C2E-4BC9-BD81-C55985021931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAA2DBCB-1C2E-4BC9-BD81-C55985021931}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{59CD76FF-020A-41A0-8581-60251A1D01F3} = {C585D402-449A-4DBF-9AC1-D031DB56B361}
+		{AAA2DBCB-1C2E-4BC9-BD81-C55985021931} = {C585D402-449A-4DBF-9AC1-D031DB56B361}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {29786FA9-BA63-4A1F-9192-DDE0F7FDDE50}
